@@ -19,7 +19,7 @@ class TennisGame {
         if(isPlayerScoresAreEqual())
             return "${translateToScore(playerOneScore)} $ALL"
 
-        return ILLEGAL_SCORE
+        return "${translateToScore(playerOneScore)}, ${translateToScore(playerTwoScore)}"
     }
 
     fun translateToScore(score: Int): String {
