@@ -34,4 +34,8 @@ class TennisGame {
 
     private fun isPlayerScoresAreEqual() = playerOneScore == playerTwoScore
 
+    fun addScoreToPlayerOne(){
+        playerOneScore++
+    }
+
 }
