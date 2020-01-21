@@ -1,5 +1,6 @@
 package com.dev.tennisgame
 
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.dev.tennisgame.utilities.GameConstant
 import com.dev.tennisgame.utilities.GameConstant.Companion.ALL
 import com.dev.tennisgame.utilities.GameConstant.Companion.DEUCE
@@ -13,13 +14,19 @@ import com.dev.tennisgame.utilities.GameConstant.Companion.WON_THE_GAME
 import com.dev.tennisgame.utilities.GameConstant.Companion.illegalScore
 import com.dev.tennisgame.utilities.Score
 import org.junit.Assert
+import org.junit.Rule
 import org.junit.Test
+import org.junit.rules.TestRule
 
 class TennisGameTest {
 
     private val playerOne = "John"
     private val playerTwo = "Joe"
     private val tennisGame = TennisGame(playerOne, playerTwo)
+
+    @Rule
+    @JvmField
+    var rule: TestRule = InstantTaskExecutorRule()
 
     @Test
     fun `Given translateToScore function returns illegal score when invalid score passed`(){
@@ -209,6 +216,18 @@ class TennisGameTest {
         tennisGame.playerOneScore = FOUR_POINT
         tennisGame.playerTwoScore = 5
         val actualResult = tennisGame.getScore()
+
+        Assert.assertEquals(expectedResult, actualResult)
+    }
+
+    @Test
+    fun `Given getScore function should update winner in the MutableLiveData, when any one player won the game`() {
+        val expectedResult = playerTwo
+
+        tennisGame.playerOneScore = Score.LOVE.value
+        tennisGame.playerTwoScore = FOUR_POINT
+        tennisGame.getScore()
+        val actualResult = tennisGame.winner.value
 
         Assert.assertEquals(expectedResult, actualResult)
     }

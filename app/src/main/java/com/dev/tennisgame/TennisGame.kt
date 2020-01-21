@@ -1,5 +1,6 @@
 package com.dev.tennisgame
 
+import androidx.lifecycle.MutableLiveData
 import com.dev.tennisgame.utilities.GameConstant
 import com.dev.tennisgame.utilities.GameConstant.Companion.ADVANTAGE
 import com.dev.tennisgame.utilities.GameConstant.Companion.ALL
@@ -20,11 +21,11 @@ class TennisGame(private val playerOneName: String, private val playerTwoName: S
 
     var playerOneScore: Int = LOVE.value
     var playerTwoScore: Int = LOVE.value
-
+    val winner = MutableLiveData<String>()
 
     fun getScore(): String {
         if(hasWinner())
-            return "${getPlayerWithHighestScore()} $WON_THE_GAME"
+            return getWinnerDetails()
         if(hasAdvantage())
             return "$ADVANTAGE ${getPlayerWithHighestScore()}$EXCLAMATION"
         if(isDeuce())
@@ -50,6 +51,11 @@ class TennisGame(private val playerOneName: String, private val playerTwoName: S
             playerOneScore > playerTwoScore -> playerOneName
             else -> playerTwoName
         }
+    }
+
+    private fun getWinnerDetails(): String {
+        winner.value = getPlayerWithHighestScore()
+        return "${getPlayerWithHighestScore()} $WON_THE_GAME"
     }
 
      private fun hasWinner() =
