@@ -139,4 +139,15 @@ class TennisGameTest {
 
         Assert.assertEquals(expectedResult, actualResult)
     }
+
+    @Test
+    fun `Given getScore function should not return Deuce, when both players are not in Deuce`(){
+        val expectedResult = "Deuce"
+
+        tennisGame.playerOneScore = Score.THIRTY.value
+        tennisGame.playerTwoScore = Score.FORTY.value
+        val actualResult = tennisGame.getScore()
+
+        Assert.assertNotEquals(expectedResult, actualResult)
+    }
 }
