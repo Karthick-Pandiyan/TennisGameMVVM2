@@ -103,4 +103,16 @@ class TennisGameTest {
 
         Assert.assertEquals(expectedResult, actualResult)
     }
+
+    @Test
+    fun `Given getScore function should return expected score when player two wins the first ball`(){
+        val expectedResult = "$LOVE, $FIFTEEN"
+
+        tennisGame.playerOneScore = Score.LOVE.value
+        tennisGame.playerTwoScore = Score.LOVE.value
+        tennisGame.addScoreToPlayerTwo()
+        val actualResult = tennisGame.getScore()
+
+        Assert.assertEquals(expectedResult, actualResult)
+    }
 }
