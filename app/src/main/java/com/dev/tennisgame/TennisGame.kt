@@ -10,7 +10,7 @@ import com.dev.tennisgame.utilities.Score.THIRTY
 import com.dev.tennisgame.utilities.Score.FIFTEEN
 import com.dev.tennisgame.utilities.Score.LOVE
 
-class TennisGame {
+class TennisGame(private val playerOneName: String, private val playerTwoName: String) {
 
     var playerOneScore: Int = LOVE.value
     var playerTwoScore: Int = LOVE.value
@@ -32,6 +32,13 @@ class TennisGame {
             FIFTEEN.value -> GameConstant.FIFTEEN
             LOVE.value -> GameConstant.LOVE
             else -> illegalScore(score)
+        }
+    }
+
+    fun getPlayerWithHighestScore(): String {
+        return when {
+            playerOneScore > playerTwoScore -> playerOneName
+            else -> playerTwoName
         }
     }
 

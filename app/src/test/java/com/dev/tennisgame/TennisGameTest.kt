@@ -13,7 +13,9 @@ import org.junit.Test
 
 class TennisGameTest {
 
-    private val tennisGame = TennisGame()
+    private val playerOne = "John"
+    private val playerTwo = "Joe"
+    private val tennisGame = TennisGame(playerOne, playerTwo)
 
     @Test
     fun `Given translateToScore function returns illegal score when invalid score passed`(){
@@ -148,6 +150,17 @@ class TennisGameTest {
         tennisGame.playerOneScore = Score.THIRTY.value
         tennisGame.playerTwoScore = Score.FORTY.value
         val actualResult = tennisGame.getScore()
+
+        Assert.assertNotEquals(expectedResult, actualResult)
+    }
+
+    @Test
+    fun `Given getPlayerWithHighestScore function should return player name, when who scored highest points`(){
+        val expectedResult = playerOne
+
+        tennisGame.playerOneScore = Score.LOVE.value
+        tennisGame.playerTwoScore = Score.FIFTEEN.value
+        val actualResult = tennisGame.getPlayerWithHighestScore()
 
         Assert.assertNotEquals(expectedResult, actualResult)
     }
