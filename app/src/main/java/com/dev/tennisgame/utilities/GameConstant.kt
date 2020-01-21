@@ -7,10 +7,12 @@ class GameConstant {
         const val FIFTEEN = "Fifteen"
         const val LOVE = "Love"
         const val ALL = "all"
-        const val ILLEGAL_SCORE = "Illegal score:"
+        const val THREE_POINT = 3
+        const val DEUCE = "Deuce"
+        private const val ILLEGAL_SCORE = "Illegal score:"
 
         fun illegalScore(score: Int): String{
-            return "Illegal score: $score"
+            return "$ILLEGAL_SCORE $score"
         }
     }
 }

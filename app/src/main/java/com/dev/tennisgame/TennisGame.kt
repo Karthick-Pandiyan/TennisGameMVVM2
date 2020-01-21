@@ -2,7 +2,8 @@ package com.dev.tennisgame
 
 import com.dev.tennisgame.utilities.GameConstant
 import com.dev.tennisgame.utilities.GameConstant.Companion.ALL
-import com.dev.tennisgame.utilities.GameConstant.Companion.ILLEGAL_SCORE
+import com.dev.tennisgame.utilities.GameConstant.Companion.DEUCE
+import com.dev.tennisgame.utilities.GameConstant.Companion.THREE_POINT
 import com.dev.tennisgame.utilities.GameConstant.Companion.illegalScore
 import com.dev.tennisgame.utilities.Score.FORTY
 import com.dev.tennisgame.utilities.Score.THIRTY
@@ -16,8 +17,8 @@ class TennisGame {
 
 
     fun getScore(): String {
-        if(playerOneScore >= 3 && playerTwoScore == playerOneScore)
-            return "Deuce"
+        if(isDeuce())
+            return DEUCE
         if(isPlayerScoresAreEqual())
             return "${translateToScore(playerOneScore)} $ALL"
 
@@ -33,6 +34,8 @@ class TennisGame {
             else -> illegalScore(score)
         }
     }
+
+    private fun isDeuce() = playerOneScore >= THREE_POINT && isPlayerScoresAreEqual()
 
     private fun isPlayerScoresAreEqual() = playerOneScore == playerTwoScore
 

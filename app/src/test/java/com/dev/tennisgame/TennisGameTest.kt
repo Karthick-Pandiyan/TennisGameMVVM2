@@ -1,6 +1,7 @@
 package com.dev.tennisgame
 
 import com.dev.tennisgame.utilities.GameConstant.Companion.ALL
+import com.dev.tennisgame.utilities.GameConstant.Companion.DEUCE
 import com.dev.tennisgame.utilities.GameConstant.Companion.FIFTEEN
 import com.dev.tennisgame.utilities.GameConstant.Companion.FORTY
 import com.dev.tennisgame.utilities.GameConstant.Companion.LOVE
@@ -131,7 +132,7 @@ class TennisGameTest {
 
     @Test
     fun `Given getScore function should return expected score when both players are in Deuce`(){
-        val expectedResult = "Deuce"
+        val expectedResult = DEUCE
 
         tennisGame.playerOneScore = Score.FORTY.value
         tennisGame.playerTwoScore = Score.FORTY.value
@@ -142,7 +143,7 @@ class TennisGameTest {
 
     @Test
     fun `Given getScore function should not return Deuce, when both players are not in Deuce`(){
-        val expectedResult = "Deuce"
+        val expectedResult = DEUCE
 
         tennisGame.playerOneScore = Score.THIRTY.value
         tennisGame.playerTwoScore = Score.FORTY.value
