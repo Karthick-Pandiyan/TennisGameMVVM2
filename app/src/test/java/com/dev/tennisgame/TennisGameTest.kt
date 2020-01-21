@@ -24,4 +24,13 @@ class TennisGameTest {
 
         Assert.assertEquals(expectedResult, actualResult)
     }
+
+    @Test
+    fun `Given translateToScore function should return Fifteen when score is 1`(){
+        val expectedResult = "Fifteen"
+
+        val actualResult = tennisGame.translateToScore(1)
+
+        Assert.assertEquals(expectedResult, actualResult)
+    }
 }
