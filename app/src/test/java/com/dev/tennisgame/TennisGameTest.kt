@@ -199,4 +199,15 @@ class TennisGameTest {
 
         Assert.assertEquals(expectedResult, actualResult)
     }
+
+    @Test
+    fun `Given getScore function should return player two has the Advantage, when player one = 4 and player two = 5`(){
+        val expectedResult = "Advantage $playerTwo!"
+
+        tennisGame.playerOneScore = 4
+        tennisGame.playerTwoScore = 5
+        val actualResult = tennisGame.getScore()
+
+        Assert.assertEquals(expectedResult, actualResult)
+    }
 }
