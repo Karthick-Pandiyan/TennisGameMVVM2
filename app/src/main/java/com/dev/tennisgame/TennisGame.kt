@@ -16,6 +16,8 @@ class TennisGame {
 
 
     fun getScore(): String {
+        if(playerOneScore >= 3 && playerTwoScore == playerOneScore)
+            return "Deuce"
         if(isPlayerScoresAreEqual())
             return "${translateToScore(playerOneScore)} $ALL"
 
