@@ -3,7 +3,10 @@ package com.dev.tennisgame
 import com.dev.tennisgame.utilities.GameConstant
 import com.dev.tennisgame.utilities.GameConstant.Companion.ALL
 import com.dev.tennisgame.utilities.GameConstant.Companion.DEUCE
+import com.dev.tennisgame.utilities.GameConstant.Companion.FOUR_POINT
 import com.dev.tennisgame.utilities.GameConstant.Companion.THREE_POINT
+import com.dev.tennisgame.utilities.GameConstant.Companion.TWO_POINT
+import com.dev.tennisgame.utilities.GameConstant.Companion.WON_THE_GAME
 import com.dev.tennisgame.utilities.GameConstant.Companion.illegalScore
 import com.dev.tennisgame.utilities.Score.FORTY
 import com.dev.tennisgame.utilities.Score.THIRTY
@@ -17,9 +20,8 @@ class TennisGame(private val playerOneName: String, private val playerTwoName: S
 
 
     fun getScore(): String {
-        if(playerTwoScore >= 4 && playerTwoScore >= playerOneScore + 2 ||
-            playerOneScore >= 4 && playerOneScore >= playerTwoScore + 2)
-            return "${getPlayerWithHighestScore()} won the game!"
+        if(hasWinner())
+            return "${getPlayerWithHighestScore()} $WON_THE_GAME"
         if(isDeuce())
             return DEUCE
         if(isPlayerScoresAreEqual())
@@ -44,6 +46,10 @@ class TennisGame(private val playerOneName: String, private val playerTwoName: S
             else -> playerTwoName
         }
     }
+
+     private fun hasWinner() =
+        playerTwoScore >= FOUR_POINT && playerTwoScore >= playerOneScore + TWO_POINT ||
+                playerOneScore >= FOUR_POINT && playerOneScore >= playerTwoScore + TWO_POINT
 
     private fun isDeuce() = playerOneScore >= THREE_POINT && isPlayerScoresAreEqual()
 

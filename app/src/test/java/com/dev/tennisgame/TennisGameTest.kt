@@ -4,8 +4,10 @@ import com.dev.tennisgame.utilities.GameConstant.Companion.ALL
 import com.dev.tennisgame.utilities.GameConstant.Companion.DEUCE
 import com.dev.tennisgame.utilities.GameConstant.Companion.FIFTEEN
 import com.dev.tennisgame.utilities.GameConstant.Companion.FORTY
+import com.dev.tennisgame.utilities.GameConstant.Companion.FOUR_POINT
 import com.dev.tennisgame.utilities.GameConstant.Companion.LOVE
 import com.dev.tennisgame.utilities.GameConstant.Companion.THIRTY
+import com.dev.tennisgame.utilities.GameConstant.Companion.WON_THE_GAME
 import com.dev.tennisgame.utilities.GameConstant.Companion.illegalScore
 import com.dev.tennisgame.utilities.Score
 import org.junit.Assert
@@ -167,9 +169,9 @@ class TennisGameTest {
 
     @Test
     fun `Given getScore function should return player one is the winner, when player one = Forty and player two = Love`(){
-        val expectedResult = "$playerOne won the game!"
+        val expectedResult = "$playerOne $WON_THE_GAME"
 
-        tennisGame.playerOneScore = 4
+        tennisGame.playerOneScore = FOUR_POINT
         tennisGame.playerTwoScore = Score.LOVE.value
         val actualResult = tennisGame.getScore()
 
@@ -178,10 +180,10 @@ class TennisGameTest {
 
     @Test
     fun `Given getScore function should return player two is the winner, when player one = Love and player two = Forty`(){
-        val expectedResult = "$playerTwo won the game!"
+        val expectedResult = "$playerTwo $WON_THE_GAME"
 
         tennisGame.playerOneScore = Score.LOVE.value
-        tennisGame.playerTwoScore = 4
+        tennisGame.playerTwoScore = FOUR_POINT
         val actualResult = tennisGame.getScore()
 
         Assert.assertEquals(expectedResult, actualResult)
