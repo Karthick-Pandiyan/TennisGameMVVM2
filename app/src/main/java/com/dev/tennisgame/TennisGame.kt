@@ -9,6 +9,17 @@ import com.dev.tennisgame.utilities.Score.LOVE
 
 class TennisGame {
 
+    var playerOne: Int = 0
+    var playerTwo: Int = 0
+
+
+    fun getScore(): String {
+        if(playerOne == playerTwo)
+            return "${translateToScore(playerOne)} all"
+
+        return "Illegal score"
+    }
+
     fun translateToScore(score: Int): String {
         return when (score){
             FORTY.value -> GameConstant.FORTY

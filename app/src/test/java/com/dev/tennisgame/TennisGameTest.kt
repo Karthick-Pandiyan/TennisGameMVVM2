@@ -57,4 +57,15 @@ class TennisGameTest {
 
         Assert.assertEquals(expectedResult, actualResult)
     }
+
+    @Test
+    fun `Given getScore function should return Love all when both player scores are equal to 0`(){
+        val expectedResult = "Love all"
+
+        tennisGame.playerOne = 0
+        tennisGame.playerTwo = 0
+        val actualResult = tennisGame.getScore()
+
+        Assert.assertEquals(expectedResult, actualResult)
+    }
 }
