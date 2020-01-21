@@ -80,4 +80,15 @@ class TennisGameTest {
 
         Assert.assertEquals(expectedResult, actualResult)
     }
+
+    @Test
+    fun `Given addScoreToPlayerTwo function should add one point when player two scored a point`(){
+        val expectedResult = Score.FIFTEEN.value
+
+        tennisGame.playerTwoScore = Score.LOVE.value
+        tennisGame.addScoreToPlayerTwo()
+        val actualResult = tennisGame.playerTwoScore
+
+        Assert.assertEquals(expectedResult, actualResult)
+    }
 }

@@ -38,4 +38,8 @@ class TennisGame {
         playerOneScore++
     }
 
+    fun addScoreToPlayerTwo(){
+        playerTwoScore++
+    }
+
 }
