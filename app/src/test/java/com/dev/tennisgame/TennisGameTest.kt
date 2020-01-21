@@ -1,5 +1,11 @@
 package com.dev.tennisgame
 
+import com.dev.tennisgame.utilities.GameConstant.Companion.FIFTEEN
+import com.dev.tennisgame.utilities.GameConstant.Companion.FORTY
+import com.dev.tennisgame.utilities.GameConstant.Companion.LOVE
+import com.dev.tennisgame.utilities.GameConstant.Companion.THIRTY
+import com.dev.tennisgame.utilities.GameConstant.Companion.illegalScore
+import com.dev.tennisgame.utilities.Score
 import org.junit.Assert
 import org.junit.Test
 
@@ -9,7 +15,7 @@ class TennisGameTest {
 
     @Test
     fun `Given translateToScore function returns illegal score when invalid score passed`(){
-        val expectedResult = "Illegal score: 5"
+        val expectedResult = illegalScore(5)
 
         val actualResult = tennisGame.translateToScore(5)
 
@@ -18,36 +24,36 @@ class TennisGameTest {
 
     @Test
     fun `Given translateToScore function should return Love when score is 0`(){
-        val expectedResult = "Love"
+        val expectedResult = LOVE
 
-        val actualResult = tennisGame.translateToScore(0)
+        val actualResult = tennisGame.translateToScore(Score.LOVE.value)
 
         Assert.assertEquals(expectedResult, actualResult)
     }
 
     @Test
     fun `Given translateToScore function should return Fifteen when score is 1`(){
-        val expectedResult = "Fifteen"
+        val expectedResult = FIFTEEN
 
-        val actualResult = tennisGame.translateToScore(1)
+        val actualResult = tennisGame.translateToScore(Score.FIFTEEN.value)
 
         Assert.assertEquals(expectedResult, actualResult)
     }
 
     @Test
     fun `Given translateToScore function should return Thirty when score is 2`(){
-        val expectedResult = "Thirty"
+        val expectedResult = THIRTY
 
-        val actualResult = tennisGame.translateToScore(2)
+        val actualResult = tennisGame.translateToScore(Score.THIRTY.value)
 
         Assert.assertEquals(expectedResult, actualResult)
     }
 
     @Test
     fun `Given translateToScore function should return Forty when score is 3`(){
-        val expectedResult = "Forty"
+        val expectedResult = FORTY
 
-        val actualResult = tennisGame.translateToScore(3)
+        val actualResult = tennisGame.translateToScore(Score.FORTY.value)
 
         Assert.assertEquals(expectedResult, actualResult)
     }
