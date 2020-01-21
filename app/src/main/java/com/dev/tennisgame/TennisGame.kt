@@ -1,6 +1,8 @@
 package com.dev.tennisgame
 
 import com.dev.tennisgame.utilities.GameConstant
+import com.dev.tennisgame.utilities.GameConstant.Companion.ALL
+import com.dev.tennisgame.utilities.GameConstant.Companion.ILLEGAL_SCORE
 import com.dev.tennisgame.utilities.GameConstant.Companion.illegalScore
 import com.dev.tennisgame.utilities.Score.FORTY
 import com.dev.tennisgame.utilities.Score.THIRTY
@@ -9,15 +11,15 @@ import com.dev.tennisgame.utilities.Score.LOVE
 
 class TennisGame {
 
-    var playerOne: Int = 0
-    var playerTwo: Int = 0
+    var playerOneScore: Int = LOVE.value
+    var playerTwoScore: Int = LOVE.value
 
 
     fun getScore(): String {
-        if(playerOne == playerTwo)
-            return "${translateToScore(playerOne)} all"
+        if(isPlayerScoresAreEqual())
+            return "${translateToScore(playerOneScore)} $ALL"
 
-        return "Illegal score"
+        return ILLEGAL_SCORE
     }
 
     fun translateToScore(score: Int): String {
@@ -29,4 +31,7 @@ class TennisGame {
             else -> illegalScore(score)
         }
     }
+
+    private fun isPlayerScoresAreEqual() = playerOneScore == playerTwoScore
+
 }

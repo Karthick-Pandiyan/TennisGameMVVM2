@@ -1,5 +1,6 @@
 package com.dev.tennisgame
 
+import com.dev.tennisgame.utilities.GameConstant.Companion.ALL
 import com.dev.tennisgame.utilities.GameConstant.Companion.FIFTEEN
 import com.dev.tennisgame.utilities.GameConstant.Companion.FORTY
 import com.dev.tennisgame.utilities.GameConstant.Companion.LOVE
@@ -60,10 +61,10 @@ class TennisGameTest {
 
     @Test
     fun `Given getScore function should return Love all when both player scores are equal to 0`(){
-        val expectedResult = "Love all"
+        val expectedResult = "$LOVE $ALL"
 
-        tennisGame.playerOne = 0
-        tennisGame.playerTwo = 0
+        tennisGame.playerOneScore = Score.LOVE.value
+        tennisGame.playerTwoScore = Score.LOVE.value
         val actualResult = tennisGame.getScore()
 
         Assert.assertEquals(expectedResult, actualResult)
