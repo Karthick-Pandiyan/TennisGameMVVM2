@@ -22,6 +22,8 @@ class TennisGame(private val playerOneName: String, private val playerTwoName: S
     fun getScore(): String {
         if(hasWinner())
             return "${getPlayerWithHighestScore()} $WON_THE_GAME"
+        if(playerOneScore >= 4 && playerOneScore == playerTwoScore + 1)
+            return "Advantage ${getPlayerWithHighestScore()}!"
         if(isDeuce())
             return DEUCE
         if(isPlayerScoresAreEqual())
