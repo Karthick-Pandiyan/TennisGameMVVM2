@@ -1,7 +1,9 @@
 package com.dev.tennisgame
 
+import com.dev.tennisgame.utilities.GameConstant
 import com.dev.tennisgame.utilities.GameConstant.Companion.ALL
 import com.dev.tennisgame.utilities.GameConstant.Companion.DEUCE
+import com.dev.tennisgame.utilities.GameConstant.Companion.EXCLAMATION
 import com.dev.tennisgame.utilities.GameConstant.Companion.FIFTEEN
 import com.dev.tennisgame.utilities.GameConstant.Companion.FORTY
 import com.dev.tennisgame.utilities.GameConstant.Companion.FOUR_POINT
@@ -191,10 +193,10 @@ class TennisGameTest {
 
     @Test
     fun `Given getScore function should return player one has the Advantage, when player one = 5 and player two = 4`(){
-        val expectedResult = "Advantage $playerOne!"
+        val expectedResult = "${GameConstant.ADVANTAGE} $playerOne$EXCLAMATION"
 
         tennisGame.playerOneScore = 5
-        tennisGame.playerTwoScore = 4
+        tennisGame.playerTwoScore = FOUR_POINT
         val actualResult = tennisGame.getScore()
 
         Assert.assertEquals(expectedResult, actualResult)
@@ -202,9 +204,9 @@ class TennisGameTest {
 
     @Test
     fun `Given getScore function should return player two has the Advantage, when player one = 4 and player two = 5`(){
-        val expectedResult = "Advantage $playerTwo!"
+        val expectedResult = "${GameConstant.ADVANTAGE} $playerTwo$EXCLAMATION"
 
-        tennisGame.playerOneScore = 4
+        tennisGame.playerOneScore = FOUR_POINT
         tennisGame.playerTwoScore = 5
         val actualResult = tennisGame.getScore()
 
