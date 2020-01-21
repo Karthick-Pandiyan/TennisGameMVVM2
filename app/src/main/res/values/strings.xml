@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">Tennis Game</string>
     <string name="action_settings">Settings</string>
+    <string name="loveAll">Love all!</string>
+    <string name="playerOne">John</string>
+    <string name="addPoint">Add Point</string>
+    <string name="playerTwo">Harry</string>
 </resources>
