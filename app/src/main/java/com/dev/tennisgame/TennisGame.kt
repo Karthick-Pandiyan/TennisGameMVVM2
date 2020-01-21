@@ -5,7 +5,7 @@ import com.dev.tennisgame.utilities.GameConstant
 import com.dev.tennisgame.utilities.GameConstant.Companion.ADVANTAGE
 import com.dev.tennisgame.utilities.GameConstant.Companion.ALL
 import com.dev.tennisgame.utilities.GameConstant.Companion.DEUCE
-import com.dev.tennisgame.utilities.GameConstant.Companion.EXCLAMATION
+import com.dev.tennisgame.utilities.GameConstant.Companion.EXCLAMATION_SYMBOL
 import com.dev.tennisgame.utilities.GameConstant.Companion.FOUR_POINT
 import com.dev.tennisgame.utilities.GameConstant.Companion.ONE_POINT
 import com.dev.tennisgame.utilities.GameConstant.Companion.THREE_POINT
@@ -24,25 +24,22 @@ class TennisGame(private val playerOneName: String, private val playerTwoName: S
     val winner = MutableLiveData<String>()
 
     fun getScore(): String {
-        if(hasWinner())
-            return getWinnerDetails()
-        if(hasAdvantage())
-            return "$ADVANTAGE ${getPlayerWithHighestScore()}$EXCLAMATION"
-        if(isDeuce())
-            return DEUCE
-        if(isPlayerScoresAreEqual())
-            return "${translateToScore(playerOneScore)} $ALL"
-
-        return "${translateToScore(playerOneScore)}, ${translateToScore(playerTwoScore)}"
+        return when {
+            hasWinner() -> getWinnerDetails()
+            hasAdvantage() -> "$ADVANTAGE ${getPlayerWithHighestScore()}$EXCLAMATION_SYMBOL"
+            isDeuce() -> DEUCE
+            isPlayerScoresAreEqual() -> "${translateToScore(playerOneScore)} $ALL"
+            else -> "${translateToScore(playerOneScore)}, ${translateToScore(playerTwoScore)}"
+        }
     }
 
     fun translateToScore(score: Int): String {
         return when (score){
-            FORTY.value -> GameConstant.FORTY
-            THIRTY.value -> GameConstant.THIRTY
-            FIFTEEN.value -> GameConstant.FIFTEEN
-            LOVE.value -> GameConstant.LOVE
-            else -> illegalScore(score)
+            FORTY.value     -> GameConstant.FORTY
+            THIRTY.value    -> GameConstant.THIRTY
+            FIFTEEN.value   -> GameConstant.FIFTEEN
+            LOVE.value      -> GameConstant.LOVE
+            else            -> illegalScore(score)
         }
     }
 
@@ -58,23 +55,24 @@ class TennisGame(private val playerOneName: String, private val playerTwoName: S
         return "${getPlayerWithHighestScore()} $WON_THE_GAME"
     }
 
-     private fun hasWinner() =
-        playerTwoScore >= FOUR_POINT && playerTwoScore >= playerOneScore + TWO_POINT ||
-                playerOneScore >= FOUR_POINT && playerOneScore >= playerTwoScore + TWO_POINT
+    private fun hasWinner() = isPlayerTwoWinner() || isPlayerOneWinner()
 
-    private fun hasAdvantage() = playerTwoScore >= FOUR_POINT && playerTwoScore == playerOneScore + ONE_POINT ||
-            playerOneScore >= FOUR_POINT && playerOneScore == playerTwoScore + ONE_POINT
+    private fun hasAdvantage() = isPlayerTwoHasAdvantage() || isPlayerOneHasAdvantage()
 
     private fun isDeuce() = playerOneScore >= THREE_POINT && isPlayerScoresAreEqual()
 
     private fun isPlayerScoresAreEqual() = playerOneScore == playerTwoScore
 
-    fun addScoreToPlayerOne(){
-        playerOneScore++
-    }
+    private fun isPlayerOneWinner() = playerOneScore >= FOUR_POINT && playerOneScore >= playerTwoScore + TWO_POINT
 
-    fun addScoreToPlayerTwo(){
-        playerTwoScore++
-    }
+    private fun isPlayerTwoWinner() = playerTwoScore >= FOUR_POINT && playerTwoScore >= playerOneScore + TWO_POINT
+
+    private fun isPlayerOneHasAdvantage() = playerOneScore >= FOUR_POINT && playerOneScore == playerTwoScore + ONE_POINT
+
+    private fun isPlayerTwoHasAdvantage() = playerTwoScore >= FOUR_POINT && playerTwoScore == playerOneScore + ONE_POINT
+
+    fun addScoreToPlayerOne() = playerOneScore++
+
+    fun addScoreToPlayerTwo() = playerTwoScore++
 
 }

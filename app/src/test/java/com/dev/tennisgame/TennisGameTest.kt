@@ -4,7 +4,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.dev.tennisgame.utilities.GameConstant
 import com.dev.tennisgame.utilities.GameConstant.Companion.ALL
 import com.dev.tennisgame.utilities.GameConstant.Companion.DEUCE
-import com.dev.tennisgame.utilities.GameConstant.Companion.EXCLAMATION
+import com.dev.tennisgame.utilities.GameConstant.Companion.EXCLAMATION_SYMBOL
 import com.dev.tennisgame.utilities.GameConstant.Companion.FIFTEEN
 import com.dev.tennisgame.utilities.GameConstant.Companion.FORTY
 import com.dev.tennisgame.utilities.GameConstant.Companion.FOUR_POINT
@@ -200,7 +200,7 @@ class TennisGameTest {
 
     @Test
     fun `Given getScore function should return player one has the Advantage, when player one = 5 and player two = 4`(){
-        val expectedResult = "${GameConstant.ADVANTAGE} $playerOne$EXCLAMATION"
+        val expectedResult = "${GameConstant.ADVANTAGE} $playerOne$EXCLAMATION_SYMBOL"
 
         tennisGame.playerOneScore = 5
         tennisGame.playerTwoScore = FOUR_POINT
@@ -211,7 +211,7 @@ class TennisGameTest {
 
     @Test
     fun `Given getScore function should return player two has the Advantage, when player one = 4 and player two = 5`(){
-        val expectedResult = "${GameConstant.ADVANTAGE} $playerTwo$EXCLAMATION"
+        val expectedResult = "${GameConstant.ADVANTAGE} $playerTwo$EXCLAMATION_SYMBOL"
 
         tennisGame.playerOneScore = FOUR_POINT
         tennisGame.playerTwoScore = 5

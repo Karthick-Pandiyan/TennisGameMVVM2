@@ -14,7 +14,7 @@ class GameConstant {
         const val WON_THE_GAME = "won the game!"
         const val DEUCE = "Deuce"
         const val ADVANTAGE = "Advantage"
-        const val EXCLAMATION = "!"
+        const val EXCLAMATION_SYMBOL = "!"
         private const val ILLEGAL_SCORE = "Illegal score:"
 
         fun illegalScore(score: Int): String{
