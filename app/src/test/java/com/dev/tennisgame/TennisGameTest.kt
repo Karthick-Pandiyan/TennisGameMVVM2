@@ -15,4 +15,13 @@ class TennisGameTest {
 
         Assert.assertEquals(expectedResult, actualResult)
     }
+
+    @Test
+    fun `Given translateToScore function should return Love when score is 0`(){
+        val expectedResult = "Love"
+
+        val actualResult = tennisGame.translateToScore(0)
+
+        Assert.assertEquals(expectedResult, actualResult)
+    }
 }
