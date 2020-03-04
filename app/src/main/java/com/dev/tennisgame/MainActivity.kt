@@ -3,11 +3,12 @@ package com.dev.tennisgame
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import kotlinx.android.synthetic.main.content_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var tennisGame: TennisGame
+    val tennisGameViewModel: TennisGameViewModel by lazy { ViewModelProvider(this).get(TennisGameViewModel::class.java) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -15,26 +16,21 @@ class MainActivity : AppCompatActivity() {
 
         val playerOne = "John"
         val playerTwo = "Harry"
-        tennisGame = TennisGame(playerOne, playerTwo)
+        tennisGameViewModel.setPlayers(playerOne, playerTwo)
 
-        updateScore()
         btnPlayerOne.setOnClickListener {
-            tennisGame.addScoreToPlayerOne()
-            updateScore()
+            tennisGameViewModel.addScoreToPlayerOne()
         }
 
         btnPlayerTwo.setOnClickListener {
-            tennisGame.addScoreToPlayerTwo()
-            updateScore()
+            tennisGameViewModel.addScoreToPlayerTwo()
         }
 
-        tennisGame.winner.observe(this, Observer {
-            btnPlayerOne.isEnabled = false
-            btnPlayerTwo.isEnabled = false
+        tennisGameViewModel.winner.observe(this, Observer {
+            tennisGameViewModel.resetGame()
         })
-    }
-
-    private fun updateScore(){
-        txtScoreView.text = tennisGame.getScore()
+        tennisGameViewModel.score.observe(this, Observer {score ->
+            txtScoreView.text = score
+        })
     }
 }
