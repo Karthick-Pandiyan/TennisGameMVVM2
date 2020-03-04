@@ -5,4 +5,7 @@
     <string name="playerOne">John</string>
     <string name="addPoint">Add Point</string>
     <string name="playerTwo">Harry</string>
+    <string name="advantage">Advantage</string>
+    <string name="exclamation_symbol">!</string>
+    <string name="all">All</string>
 </resources>
